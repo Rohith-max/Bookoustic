@@ -1,0 +1,343 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 30% 97%;
+    --foreground: 20 50% 15%;
+
+    --card: 30 30% 99%;
+    --card-foreground: 20 50% 10%;
+
+    --popover: 30 20% 99%;
+    --popover-foreground: 20 50% 10%;
+
+    --primary: 20 84% 22%;
+    --primary-foreground: 30 30% 97%;
+
+    --secondary: 30 10% 92%;
+    --secondary-foreground: 20 80% 17%;
+
+    --muted: 24 5% 90%;
+    --muted-foreground: 20 30% 40%;
+
+    --accent: 28 54% 86%;
+    --accent-foreground: 20 80% 17%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 30 30% 97%;
+
+    --border: 30 20% 80%;
+    --input: 30 20% 80%;
+    --ring: 20 80% 17%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 30% 10%;
+    --foreground: 30 10% 90%;
+
+    --card: 20 30% 13%;
+    --card-foreground: 30 10% 90%;
+
+    --popover: 20 30% 13%;
+    --popover-foreground: 30 10% 90%;
+
+    --primary: 28 50% 40%;
+    --primary-foreground: 20 10% 5%;
+
+    --secondary: 20 30% 20%;
+    --secondary-foreground: 30 10% 90%;
+
+    --muted: 20 30% 20%;
+    --muted-foreground: 30 10% 70%;
+
+    --accent: 28 50% 25%;
+    --accent-foreground: 30 10% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 30 10% 90%;
+
+    --border: 20 30% 30%;
+    --input: 20 30% 30%;
+    --ring: 28 50% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Library-themed elements */
+.library-shelf {
+  background-image: url('/wooden-shelf.png');
+  background-repeat: repeat-x;
+  background-size: 100% 20px;
+  height: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.library-shelf-shadow {
+  height: 10px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 100%);
+}
+
+.library-bookend {
+  background-image: url('/bookend.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 40px;
+  position: absolute;
+}
+
+.vintage-paper {
+  background-color: #f8f3e6;
+  background-image: url('/paper-texture.png');
+  background-blend-mode: multiply;
+}
+
+.dark .vintage-paper {
+  background-color: #2a2520;
+  background-image: url('/dark-paper-texture.png');
+  background-blend-mode: multiply;
+}
+
+.book-spine {
+  position: relative;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.book-spine:hover {
+  transform: translateX(5px);
+}
+
+/* Book styling */
+.book-container {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.book-content {
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 5px;
+}
+
+.book-content.flipping-next {
+  animation: flipPageForward 0.6s forwards;
+}
+
+.book-content.flipping-prev {
+  animation: flipPageBackward 0.6s forwards;
+}
+
+.book-page {
+  backface-visibility: hidden;
+  min-height: 700px;
+  position: relative;
+  background-color: #f8f3e6;
+  background-image: url('/paper-texture.png');
+  background-blend-mode: multiply;
+  color: #4b3621;
+  padding: 2.5rem;
+  box-shadow: inset -10px 0 30px rgba(75, 54, 33, 0.1);
+  width: 100%;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+  border-left: 1px solid #d3c7b1;
+}
+
+.dark .book-page {
+  background-color: #2a2520;
+  background-image: url('/dark-paper-texture.png');
+  background-blend-mode: multiply;
+  color: #e0d3c1;
+  box-shadow: inset -10px 0 30px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid #3d3630;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2.5rem;
+  font-size: 0.9rem;
+  color: #8d7b6c;
+  font-style: italic;
+}
+
+.chapter-header {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  font-size: 0.9rem;
+  color: #8d7b6c;
+  font-style: italic;
+}
+
+.dark .page-number,
+.dark .chapter-header {
+  color: #a59787;
+}
+
+.chapter-page .chapter-content {
+  margin-top: 2rem;
+}
+
+/* Enhanced paragraph styling */
+.chapter-content p {
+  margin-bottom: 1.2rem;
+  text-indent: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  font-size: 1.05rem;
+}
+
+/* Dialogue styling */
+.chapter-content p.dialogue {
+  text-indent: 1.2rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Section break styling */
+.chapter-content .section-break {
+  text-align: center;
+  margin: 1.8rem 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.5rem;
+  color: #8d7b6c;
+}
+
+.decorative-element {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.6;
+  color: #8d7b6c;
+}
+
+.page-flip-next {
+  animation: pageFlipForward 0.5s ease-in-out;
+}
+
+.page-flip-prev {
+  animation: pageFlipBackward 0.5s ease-in-out;
+}
+
+@keyframes pageFlipForward {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(-15deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes pageFlipBackward {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(15deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipPageForward {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-5deg);
+  }
+}
+
+@keyframes flipPageBackward {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(5deg);
+  }
+}
+
+/* Book cover and back cover specific styles */
+.book-cover,
+.book-back-cover {
+  position: relative;
+  min-height: 700px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Title page styling */
+.title-page {
+  min-height: 700px;
+  width: 100%;
+  height: 100%;
+  background-image: url('/vintage-title-page-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+/* Table of contents styling */
+.table-of-contents {
+  position: relative;
+  min-height: 700px;
+  background-image: url('/toc-decorative-border.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 3rem;
+}
+
+.pdf-progress-container {
+  width: 100%;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.pdf-progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #e6dfd6;
+  overflow: hidden;
+}
+
+.pdf-progress-value {
+  height: 100%;
+  background-color: #8d7b6c;
+  transition: width 0.3s ease;
+}
