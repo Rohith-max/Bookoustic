@@ -25,3 +25,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
+
+# Ignore files with incorrect extensions that cause build errors
+components/ui/form.tsxsx
+components/ui/input.tsxtsx
+hooks/use-mobile.tsxea.tsx
+hooks/use-toast.tst.tsx
