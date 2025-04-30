@@ -10,7 +10,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Bookoustic - AI Book Author",
   description: "Generate professional books with AI",
-  generator: "v0.dev"
 }
 
 export default function RootLayout({
